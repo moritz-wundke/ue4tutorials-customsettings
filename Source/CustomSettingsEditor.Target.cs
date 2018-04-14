@@ -5,21 +5,10 @@ using System.Collections.Generic;
 
 public class CustomSettingsEditorTarget : TargetRules
 {
-	public CustomSettingsEditorTarget(TargetInfo Target)
+	public CustomSettingsEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-	}
 
-	//
-	// TargetRules interface.
-	//
-
-	public override void SetupBinaries(
-		TargetInfo Target,
-		ref List<UEBuildBinaryConfiguration> OutBuildBinaryConfigurations,
-		ref List<string> OutExtraModuleNames
-		)
-	{
-		OutExtraModuleNames.AddRange( new string[] { "CustomSettings" } );
+		ExtraModuleNames.AddRange( new string[] { "CustomSettings" } );
 	}
 }

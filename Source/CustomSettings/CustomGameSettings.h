@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "CustomGameSettings.generated.h"
 
 /**
@@ -11,20 +12,18 @@
  * props using the globalconfig or config meta.
  */
 UCLASS(config = Game, defaultconfig)
-class UCustomGameSettings : public UObject
+class CUSTOMSETTINGS_API UCustomGameSettings : public UObject
 {
 	GENERATED_BODY()
 
 public:
-	UCustomGameSettings(const FObjectInitializer& ObjectInitializer);
-
 	/** Sample bool property */
 	UPROPERTY(EditAnywhere, config, Category = Custom)
-	bool bSampleBool;
+	bool bSampleBool = false;
 
 	/** Sample float property that requires a restart */
 	UPROPERTY(EditAnywhere, config, Category = Custom, meta = (ConfigRestartRequired = true))
-	float SampleFloatRequireRestart;
+	float SampleFloatRequireRestart = 0.f;
 
 	/** Sample string list */
 	UPROPERTY(config, EditAnywhere, Category = Custom)
@@ -32,7 +31,7 @@ public:
 
 	/** Or add min, max or clamp values to the settings */
 	UPROPERTY(config, EditAnywhere, Category = Custom, meta = (UIMin = 1, ClampMin = 1))
-	int32 ClampedIntSetting;
+	int32 ClampedIntSetting = 1;
 
 	/** We can even use asset references */
 	UPROPERTY(config, EditAnywhere, Category = Materials, meta = (AllowedClasses = "MaterialInterface"))
