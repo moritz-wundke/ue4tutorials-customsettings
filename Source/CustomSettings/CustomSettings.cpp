@@ -3,6 +3,8 @@
 
 #include "CustomSettings.h"
 
+#include "ModuleManager.h"
+
 // Settings
 #include "CustomGameSettings.h"
 #include "ISettingsModule.h"
@@ -52,11 +54,11 @@ private:
 
 	void RegisterSettings()
 	{
-		// Registering some settings is just a matter of exposijg the default UObject of
+		// Registering some settings is just a matter of exposing the default UObject of
 		// your desired class, feel free to add here all those settings you want to expose
 		// to your LDs or artists.
-
-		if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
+		ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
+		if (SettingsModule)
 		{
 			// Create the new category
 			ISettingsContainerPtr SettingsContainer = SettingsModule->GetContainer("Project");
